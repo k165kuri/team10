@@ -1,4 +1,4 @@
-クラス：charactor
+クラス：character
 担当者：徳永瑛之
 変数：potision_x(左右の座標)
 メソッド：dush(ダッシュの関数)、move(キャラを左右に動かす)
