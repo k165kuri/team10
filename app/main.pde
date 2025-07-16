@@ -2,7 +2,6 @@ Gamecharacter mainChar;
 ArrayList<gomi1> gomi1s;
 ArrayList<gomi2> gomi2s;
 
-
 int score = 0;
 int startTime;
 boolean gameOver = false;
@@ -74,6 +73,7 @@ void draw() {
       gomi1s.add(new gomi1());
       }
     }
+
     // スコアと時間の表示
     fill(0);
     textSize(20);
@@ -109,6 +109,7 @@ void keyPressed() {
 }
 
 void resetGame() {
+
   gomi1s.clear();
   gomi2s.clear();
   score = 0;
