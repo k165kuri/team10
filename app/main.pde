@@ -4,7 +4,7 @@ Minim minim;
 AudioPlayer bgm;
 AudioSample se_hit;
 
-Charactor player;
+character player;
 ArrayList<Gomi> gomis;
 ArrayList<Gomi1> gomis1;
 
@@ -14,7 +14,7 @@ boolean gameOver = false;
 
 void setup() {
   size(400, 600);
-  player = new Charactor();
+  player = new character();
   gomis = new ArrayList<Gomi>();
   gomis1 = new ArrayList<Gomi1>();
   
@@ -42,35 +42,7 @@ void draw() {
       gomis1.add(new Gomi1());
     }
 
-    // ゴミの動作
-    for (int i = gomis.size() - 1; i >= 0; i--) {
-      Gomi g = gomis.get(i);
-      g.update();
-      g.display();
-      if (g.hits(player)) {
-        gameOver = true;
-        se_hit.trigger();
-        bgm.close();
-      } else if (g.y > height) {
-        gomis.remove(i);
-        score++;
-      }
-    }
-
-    for (int i = gomis1.size() - 1; i >= 0; i--) {
-      Gomi1 g1 = gomis1.get(i);
-      g1.update();
-      g1.display();
-      if (g1.hits(player)) {
-        gameOver = true;
-        se_hit.trigger();
-        bgm.close();
-      } else if (g1.y > height) {
-        gomis1.remove(i);
-        score += 2;
-      }
-    }
-
+    
     // 時間とスコア表示
     fill(0);
     textSize(16);
