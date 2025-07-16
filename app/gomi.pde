@@ -9,7 +9,7 @@ class Gomi{
   void display() {
   }
 
-  boolean hit(character c) {
+  boolean hit(Gamecharacter c) {
     if (position_x < c.x + 30 &&
       position_x + 30 > c.x &&
       position_y < c.y + 30 &&
