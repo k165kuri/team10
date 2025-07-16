@@ -1,18 +1,3 @@
-character mainChar;
-
-void setup() {
-  size(600, 400);
-  mainChar = new character();
-}
-
-void draw() {
-  background(240);
-  mainChar.display();
-}
-
-void keyPressed() {
-  mainChar.move(keyCode);
-}
 
 // キャラクタークラス
 class character {
