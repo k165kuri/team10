@@ -1,8 +1,14 @@
-character mainChar;
+Gamecharacter mainChar;
+PImage obj;
+
+int lastKey = 0;
+int lastKeyTime = 0;
+int doubleTapThreshold = 300;
 
 void setup() {
-  size(600, 400);
-  mainChar = new character();
+  size(800, 600);
+  obj = loadImage("character.png");
+  mainChar = new Gamecharacter(obj);
 }
 
 void draw() {
@@ -11,30 +17,41 @@ void draw() {
 }
 
 void keyPressed() {
-  mainChar.move(keyCode);
+  int currentTime = millis();
+
+  if (keyCode == lastKey && currentTime - lastKeyTime < doubleTapThreshold) {
+    mainChar.move(keyCode, true);
+  } else {
+    mainChar.move(keyCode, false);
+  }
+
+  lastKey = keyCode;
+  lastKeyTime = currentTime;
 }
 
 // キャラクタークラス
-class character {
+class Gamecharacter {
   int x, y;
+  PImage img;
 
-  character() {
+  Gamecharacter(PImage img) {
+    this.img = img;
     x = width / 2;
     y = height - 60;
   }
 
   void display() {
-    fill(0, 102, 255);
-    textSize(48);
-    textAlign(CENTER, CENTER);
-    text("main", x, y);
+    imageMode(CENTER);
+    image(img, x, y, 90, 90);
   }
 
-  void move(int code) {
+  void move(int code, boolean dash) {
+    int speed = dash ? 80 : 10;
+
     if (code == LEFT) {
-      x -= 20;
+      x -= speed;
     } else if (code == RIGHT) {
-      x += 20;
+      x += speed;
     }
     x = constrain(x, 50, width - 50);
   }
