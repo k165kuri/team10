@@ -1,33 +1,3 @@
-Gamecharacter mainChar;
-PImage obj;
-
-int lastKey = 0;
-int lastKeyTime = 0;
-int doubleTapThreshold = 300;
-
-void setup() {
-  size(800, 600);
-  obj = loadImage("character.png");
-  mainChar = new Gamecharacter(obj);
-}
-
-void draw() {
-  background(240);
-  mainChar.display();
-}
-
-void keyPressed() {
-  int currentTime = millis();
-
-  if (keyCode == lastKey && currentTime - lastKeyTime < doubleTapThreshold) {
-    mainChar.move(keyCode, true);
-  } else {
-    mainChar.move(keyCode, false);
-  }
-
-  lastKey = keyCode;
-  lastKeyTime = currentTime;
-}
 
 // キャラクタークラス
 class Gamecharacter {
