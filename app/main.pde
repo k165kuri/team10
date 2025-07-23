@@ -1,3 +1,5 @@
+import ddf.minim.*;
+
 Gamecharacter mainChar;
 PImage imgFront, imgLeft, imgRight;
 boolean dash = false;
@@ -8,9 +10,13 @@ int score = 0;
 int startTime;
 boolean gameOver = false;
 
+
 int lastKey = 0;
 int lastKeyTime = 0;
 int doubleTapThreshold = 300;
+Minim minim;
+AudioPlayer bgm;
+
 
 PFont font;
 void setup() {
@@ -20,6 +26,10 @@ void setup() {
   imgFront = loadImage("character.png");         
   imgLeft = loadImage("character_left.png");    
   imgRight = loadImage("character_right.png");  
+  
+  minim = new Minim(this);
+  bgm = minim.loadFile("bgm.mp3");
+  bgm.loop();
 
   mainChar = new Gamecharacter(imgFront); 
  
@@ -30,7 +40,7 @@ void setup() {
 }
 
 void draw() {
-  background(255);
+  background(40, 224, 208);
 
   if (!gameOver) {
     // キャラクター描画
