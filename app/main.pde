@@ -1,4 +1,6 @@
 Gamecharacter mainChar;
+PImage imgFront, imgLeft, imgRight;
+boolean dash = false;
 ArrayList<gomi1> gomi1s;
 ArrayList<gomi2> gomi2s;
 
@@ -15,7 +17,11 @@ void setup() {
   size(800, 600);
   font = createFont("SansSerif", 20); 
   textFont(font);
-  mainChar = new Gamecharacter(loadImage("character.png"));
+  imgFront = loadImage("character.png");         
+  imgLeft = loadImage("character_left.png");    
+  imgRight = loadImage("character_right.png");  
+
+  mainChar = new Gamecharacter(imgFront); 
  
   gomi1s = new ArrayList<gomi1>();
   gomi2s = new ArrayList<gomi2>();
@@ -97,16 +103,27 @@ void keyPressed() {
     resetGame();
     return;
   }
-
-  int currentTime = millis();
-  if (keyCode == lastKey && currentTime - lastKeyTime < doubleTapThreshold) {
-    mainChar.move(keyCode, true);
-  } else {
-    mainChar.move(keyCode, false);
+  if (key == 'v' || key == 'V') {
+    dash = true;
   }
-  lastKey = keyCode;
-  lastKeyTime = currentTime;
+
+  if (keyCode == LEFT) {
+    mainChar.setImage(imgLeft);
+    mainChar.move(LEFT, dash);
+  } else if (keyCode == RIGHT) {
+    mainChar.setImage(imgRight);
+    mainChar.move(RIGHT, dash);
+  }
 }
+
+void keyReleased() {
+  if (key == 'v' || key == 'V') {
+    dash = false;
+  }
+
+}
+
+ 
 
 void resetGame() {
 
